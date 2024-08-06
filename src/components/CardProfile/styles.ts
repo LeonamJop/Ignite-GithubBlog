@@ -39,6 +39,7 @@ export const ProfilePhoto = styled.img`
 export const ProfileBio = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 `
 
 export const ProfileInfo = styled.div`
