@@ -11,6 +11,8 @@ export const CardContainer = styled.div`
 
     flex-direction: column;
 
+    gap: 1.25rem;
+
     background-color: ${props => props.theme['base-post']};
 
     border-radius: 10px;
@@ -18,28 +20,33 @@ export const CardContainer = styled.div`
     div {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: baseline;
         flex-direction: row;
     }
 
 
     h2 {
-        size: 14px;
+        max-width: max-content;
+        font-size: 18px;
         color: ${props => props.theme['base-title']};
     }
 
     span {
-        size: 12px;
+        width: 3.313rem;
+        font-size: 12px;
         color: ${props => props.theme['base-span']};
     }
 
     p {
         max-width: 22rem;
         max-height: 7rem;
-        size: 12px;
+        font-size: 16px;
         color: ${props => props.theme['base-span']};
 
-        white-space: nowrap;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+
         overflow: hidden;
         text-overflow: ellipsis;
     }
