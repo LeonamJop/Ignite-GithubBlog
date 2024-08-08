@@ -7,7 +7,7 @@ export const ProfileContainer = styled.div`
     background-color: ${props => props.theme['base-profile']};
 
     display: inline-flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     gap: 2rem;
