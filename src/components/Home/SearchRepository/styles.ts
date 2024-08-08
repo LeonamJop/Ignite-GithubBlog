@@ -20,7 +20,6 @@ export const PublicationCount = styled.div`
         color: ${props => props.theme['base-span']};
     }
 `
-
 export const InputSearch = styled.input`
     width: 100%;
     height: 3.125rem;
