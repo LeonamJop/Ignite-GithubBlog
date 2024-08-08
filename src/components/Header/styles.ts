@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
-    width: 100%;
+    max-width: 85.375rem;
     max-height: 18.5rem;
+
+    img {
+        width: 100%;
+    }
 `
