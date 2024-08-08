@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProfileContainer = styled.div`
-    width: 54rem;
+    width: 100%;
     height: 13.25rem;
 
     background-color: ${props => props.theme['base-profile']};
@@ -15,6 +15,8 @@ export const ProfileContainer = styled.div`
     border-radius: 10px;
 
     margin-top: -85px;
+
+    padding: 0 2.5rem;
 
     h2 {
         size: 20px;
@@ -43,7 +45,7 @@ export const ProfileBio = styled.div`
 `
 
 export const ProfileInfo = styled.div`
-    max-width: 24.563rem;
+    width: 25rem;
     max-height: 1.625rem;
 
     display: flex;
@@ -59,11 +61,18 @@ export const ProfileInfo = styled.div`
         justify-content: center;
         align-items: center;
 
-        gap: 0.535rem;
+        gap: 0.5rem;
+
+        margin-right: 1.25rem;
     }
 
     img {
         width: 1rem;
         height: 1rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 `

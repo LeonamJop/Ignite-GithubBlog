@@ -1,4 +1,4 @@
-import { CardContainer } from "./style"
+import { CardContainer } from "./styles"
 
 export function CardRepositories() {
     return (

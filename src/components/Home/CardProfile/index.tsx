@@ -1,8 +1,8 @@
 import { ProfileBio, ProfileContainer, ProfileInfo, ProfilePhoto } from "./styles";
 
-import gitimg from '../../assets/icons/github-brands-solid.svg'
-import building from '../../assets/icons/building-solid.svg'
-import group from '../../assets/icons/user-group-solid.svg'
+import gitimg from '../../../assets/icons/github-brands-solid.svg'
+import building from '../../../assets/icons/building-solid.svg'
+import group from '../../../assets/icons/user-group-solid.svg'
 
 export function CardProfile() {
     return (
@@ -18,7 +18,7 @@ export function CardProfile() {
                 <ProfileInfo>
                     <div>
                         <img src={gitimg} alt="" />
-                        LeonamJop
+                        <a href="https://github.com/LeonamJop/" target="_blank">LeonamJop</a>
                     </div>
 
                     <div>
