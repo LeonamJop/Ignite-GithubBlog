@@ -33,7 +33,7 @@ export function CardProfile() {
         }
 
         fetchData()
-    },[])
+    },[user])
 
     return (
         <ProfileContainer>
