@@ -18,8 +18,9 @@ export const CardContainer = styled.div`
     border-radius: 10px;
 
     div {
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: baseline;
         flex-direction: row;
     }
@@ -38,7 +39,7 @@ export const CardContainer = styled.div`
     }
 
     p {
-        max-width: 22rem;
+        width: 100%;
         max-height: 7rem;
         font-size: 16px;
         color: ${props => props.theme['base-span']};
