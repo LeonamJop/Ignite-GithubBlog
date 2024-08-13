@@ -72,7 +72,11 @@ export const ProfileInfo = styled.div`
     }
 
     a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
         text-decoration: none;
-        color: inherit;
+        color: ${props => props.theme['blue']};
     }
 `
