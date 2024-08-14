@@ -8,7 +8,7 @@ import { repos } from "../../services/api";
 interface RepositoryProps {
     id: string
     name: string
-    created: string
+    created_at: string
     description: string
 }
 
@@ -24,7 +24,7 @@ export function Home() {
 
             setRepositories(response.data);
         }
-        
+
         fetchData();
     },[repos]);
 
@@ -39,9 +39,9 @@ export function Home() {
                             <CardRepositories
                                 key={repository.id}
                                 title={repository.name}
-                                created={repository.created}
+                                created={repository.created_at}
                                 description={repository.description}
-                            />
+                            />                            
                         )
                     })}
                 </RepositoriesList>

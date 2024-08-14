@@ -17,6 +17,8 @@ export const CardContainer = styled.div`
 
     border-radius: 10px;
 
+    cursor: pointer;
+
     div {
         width: 100%;
         display: flex;
@@ -33,7 +35,7 @@ export const CardContainer = styled.div`
     }
 
     span {
-        width: 3.313rem;
+        width: fit-content;
         font-size: 12px;
         color: ${props => props.theme['base-span']};
     }
