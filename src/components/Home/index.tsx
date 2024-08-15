@@ -1,38 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { CardProfile } from "./CardProfile";
 import { CardRepositories } from "./CardRepositories";
 import { SearchRepository } from "./SearchRepository";
 import { HomeContainer, Profile, RepositoriesList} from "./styles";
-import { repos } from "../../services/api";
-
-interface RepositoryProps {
-    id: string
-    name: string
-    created_at: string
-    description: string
-}
+import { RepositorySearchContext } from "../../context/RepositorySearchContext";
+import { RepositoryProps } from "../../@types/interfaces";
 
 export function Home() {
-    const [repositories, setRepositories] = useState(Array<RepositoryProps>);
-
-    useEffect(() => {
-
-        const fetchData = async () => {
-            const response = await repos;
-
-            if (response.data.erro) return;
-
-            setRepositories(response.data);
-        }
-
-        fetchData();
-    },[repos]);
+    const { quantityRepos, repositories} = useContext(RepositorySearchContext);
 
     return (
         <HomeContainer>
             <Profile>
                 <CardProfile />
-                <SearchRepository />
+                <SearchRepository quantityRepos={quantityRepos} />
                 <RepositoriesList>
                     {repositories.length > 0 && repositories.map((repository: RepositoryProps)=>{
                         return (
@@ -41,7 +22,7 @@ export function Home() {
                                 title={repository.name}
                                 created={repository.created_at}
                                 description={repository.description}
-                            />                            
+                            />
                         )
                     })}
                 </RepositoriesList>
