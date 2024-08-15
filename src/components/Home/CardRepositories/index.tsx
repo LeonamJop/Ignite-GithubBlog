@@ -1,33 +1,27 @@
-import { useEffect, useState } from "react"
-import { CardContainer } from "./styles"
+import { CardContainer } from "./styles";
+import { CardRepositoriesProps } from "../../../@types/interfaces";
 
-interface CardRepositoriesProps {
-    title: string
-    created: string
-    description: string
+
+function getCreationDay (created: string) {
+    const date = new Date(created);
+    const dateNow = new Date();
+    const remainder = Math.abs(dateNow.getTime() - date.getTime());
+
+    const days = Math.floor(remainder / (1000 * 3600 * 24));
+    const months = Math.floor(days/30);
+    const years = Math.floor(days/365);
+
+    if (years >= 1) {
+        return `Há ${years} ${years === 1 ? 'ano' : 'anos'}`;
+    } else if (months >= 1) {
+        return `Há ${months} ${months === 1 ? 'mês' : 'meses'}`;
+    } else {
+        return `Há ${days} ${days === 1 ? 'dia' : 'dias'}`;
+    }
 }
 
 export function CardRepositories({title, created, description }: CardRepositoriesProps) {
-    const [createdAt, setCreatedAt] = useState('');
-
-    useEffect(() => {
-        const date = new Date(created);
-        const dateNow = new Date();
-        const remainder = Math.abs(dateNow.getTime() - date.getTime());
-
-        const days = Math.ceil(remainder / (1000 * 3600 * 24));
-        const months = Math.floor(days/30);
-        const years = Math.floor(days/365);
-
-        if (years >= 1) {
-            setCreatedAt(`Há ${years} ${years === 1 ? 'ano' : 'anos'}`);
-        } else if (months >= 1) {
-            setCreatedAt(`Há ${months} ${months === 1 ? 'mês' : 'meses'}`);
-        } else {
-            setCreatedAt(`Há ${days} ${days === 1 ? 'dia' : 'dias'}`);
-        }
-        
-    },[created])
+    const createdAt =  getCreationDay(created);
 
     return (
         <CardContainer>
@@ -37,5 +31,5 @@ export function CardRepositories({title, created, description }: CardRepositorie
             </div>
             <p>{description}</p>
         </CardContainer>
-    )
+    );
 }
