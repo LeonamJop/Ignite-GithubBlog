@@ -13,33 +13,69 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
     const [search, setSearch] = useState('');
     const [quantityRepos, setQuantityRepos] = useState(0);
 
+    const [userName, setUserName] = useState('');
+    const [bio, setBio] = useState('');
+    const [login, setLogin] = useState('');
+    const [followers, setFollowers] = useState('');
+    const [company, setCompany] = useState('');
+    const [url, setUrl] = useState('');
+    const [avatar, setAvatar] = useState('');
+
     useEffect(() => {
         (async () => {
-            const publicRepos = await user;
-            const response = await repos;
+            const userData = await user;
+            const repositories = await repos;
 
-            if (response.data.erro || publicRepos.data.erro) return;
+            if (repositories.data.erro || userData.data.erro) return;
 
-            setQuantityRepos(Number(publicRepos.data.public_repos));
-            setRepositories(response.data)
+            setRepositories(repositories.data);
+
+            setQuantityRepos(Number(userData.data.public_repos));
+            setUserName(userData.data.name);
+            setBio(userData.data.bio);
+            setLogin(userData.data.login);
+            setFollowers(userData.data.followers);
+            setCompany(userData.data.company);
+            setUrl(userData.data.html_url);
+            setAvatar(userData.data.avatar_url);
         })();
 
-    },[setQuantityRepos, setRepositories]);
+    },[setQuantityRepos, setRepositories, setUserName, setBio, setLogin, setFollowers, setCompany, setUrl, setAvatar]);
 
-    function handleFilterRepositoriesList() {
-        return ('')
-    }
+    useEffect(() => {
+        const filterSearch = repositories.filter(function (repo) {
+            return (
+                repo.name.toLowerCase().includes(search.toLowerCase())
+            )
+        });
+
+        setRepositories(filterSearch);
+        
+    },[repositories, search]);
 
     return (
         <RepositorySearchContext.Provider
             value={{
                 search,
                 setSearch,
-                handleFilterRepositoriesList,
                 quantityRepos,
                 setQuantityRepos,
                 repositories,
-                setRepositories
+                setRepositories,
+                userName,
+                setUserName,
+                bio,
+                setBio,
+                login,
+                setLogin,
+                followers,
+                setFollowers,
+                company,
+                setCompany,
+                url,
+                setUrl,
+                avatar,
+                setAvatar
             }}
         >
             {children}

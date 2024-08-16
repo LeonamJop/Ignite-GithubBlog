@@ -7,7 +7,7 @@ import { RepositorySearchContext } from "../../context/RepositorySearchContext";
 import { RepositoryProps } from "../../@types/interfaces";
 
 export function Home() {
-    const { quantityRepos, repositories} = useContext(RepositorySearchContext);
+    const { quantityRepos, repositories } = useContext(RepositorySearchContext);
 
     return (
         <HomeContainer>
