@@ -10,6 +10,7 @@ interface RepositorySearchContextProviderProps {
 
 export function RepositorySearchContextProvider({ children }: RepositorySearchContextProviderProps) {
     const [repositories, setRepositories] = useState(Array<RepositoryProps>);
+    const [filteredRepositories, setFilteredRepositories] = useState(Array<RepositoryProps>);
     const [search, setSearch] = useState('');
     const [quantityRepos, setQuantityRepos] = useState(0);
 
@@ -29,6 +30,7 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
             if (repositories.data.erro || userData.data.erro) return;
 
             setRepositories(repositories.data);
+            setFilteredRepositories(repositories.data);
 
             setQuantityRepos(Number(userData.data.public_repos));
             setUserName(userData.data.name);
@@ -43,13 +45,17 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
     },[setQuantityRepos, setRepositories, setUserName, setBio, setLogin, setFollowers, setCompany, setUrl, setAvatar]);
 
     useEffect(() => {
-        const filterSearch = repositories.filter(function (repo) {
-            return (
-                repo.name.toLowerCase().includes(search.toLowerCase())
-            )
-        });
-
-        setRepositories(filterSearch);
+        if (search !== '') {
+            const filterSearch = repositories.filter(function (repo) {
+                return (
+                    repo.name.toLowerCase().includes(search.toLowerCase())
+                )
+            });
+    
+            setFilteredRepositories(filterSearch);
+        } else {
+            setFilteredRepositories(repositories);
+        }
         
     },[repositories, search]);
 
@@ -60,7 +66,7 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
                 setSearch,
                 quantityRepos,
                 setQuantityRepos,
-                repositories,
+                repositories: filteredRepositories,
                 setRepositories,
                 userName,
                 setUserName,

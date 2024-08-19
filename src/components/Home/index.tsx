@@ -7,13 +7,13 @@ import { RepositorySearchContext } from "../../context/RepositorySearchContext";
 import { RepositoryProps } from "../../@types/interfaces";
 
 export function Home() {
-    const { quantityRepos, repositories } = useContext(RepositorySearchContext);
+    const {search, quantityRepos, repositories } = useContext(RepositorySearchContext);
 
     return (
         <HomeContainer>
             <Profile>
                 <CardProfile />
-                <SearchRepository quantityRepos={quantityRepos} />
+                <SearchRepository quantityRepos={search === '' ? quantityRepos : repositories.length} />
                 <RepositoriesList>
                     {repositories.length > 0 && repositories.map((repository: RepositoryProps)=>{
                         return (
