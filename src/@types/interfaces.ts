@@ -17,34 +17,23 @@ export interface CardRepositoriesProps {
     description: string
 }
 
+export interface UserInfoProps {
+    name: string
+    bio: string
+    login: string
+    followers: string
+    company: string
+    url: string
+    avatar: string
+    quantityRepos: number
+}
+
 export interface RepositorySearchProps {
     search: string;
     setSearch: Dispatch<SetStateAction<string>>;
-        
-    quantityRepos: number;
-    setQuantityRepos: Dispatch<SetStateAction<number>>;
 
     repositories: Array<RepositoryProps>;
     setRepositories: Dispatch<SetStateAction<Array<RepositoryProps>>>
 
-    userName: string;
-    setUserName: Dispatch<SetStateAction<string>>;
-
-    bio: string
-    setBio: Dispatch<SetStateAction<string>>;
-
-    login: string;
-    setLogin: Dispatch<SetStateAction<string>>;
-
-    followers: string;
-    setFollowers: Dispatch<SetStateAction<string>>;
-
-    company: string;
-    setCompany: Dispatch<SetStateAction<string>>;
-
-    url: string;
-    setUrl: Dispatch<SetStateAction<string>>;
-
-    avatar: string;
-    setAvatar: Dispatch<SetStateAction<string>>;
+    userInfo: UserInfoProps;
 }

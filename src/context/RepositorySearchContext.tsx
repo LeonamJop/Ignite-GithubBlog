@@ -12,15 +12,17 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
     const [repositories, setRepositories] = useState(Array<RepositoryProps>);
     const [filteredRepositories, setFilteredRepositories] = useState(Array<RepositoryProps>);
     const [search, setSearch] = useState('');
-    const [quantityRepos, setQuantityRepos] = useState(0);
 
-    const [userName, setUserName] = useState('');
-    const [bio, setBio] = useState('');
-    const [login, setLogin] = useState('');
-    const [followers, setFollowers] = useState('');
-    const [company, setCompany] = useState('');
-    const [url, setUrl] = useState('');
-    const [avatar, setAvatar] = useState('');
+    const [userInfo, setUserInfo] = useState({
+        name: '',
+        bio: '',
+        login: '',
+        followers: '',
+        company: '',
+        url: '',
+        avatar: '',
+        quantityRepos: 0
+    });
 
     useEffect(() => {
         (async () => {
@@ -32,17 +34,20 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
             setRepositories(repositories.data);
             setFilteredRepositories(repositories.data);
 
-            setQuantityRepos(Number(userData.data.public_repos));
-            setUserName(userData.data.name);
-            setBio(userData.data.bio);
-            setLogin(userData.data.login);
-            setFollowers(userData.data.followers);
-            setCompany(userData.data.company);
-            setUrl(userData.data.html_url);
-            setAvatar(userData.data.avatar_url);
+            setUserInfo({
+                name: userData.data.name,
+                bio: userData.data.bio,
+                login: userData.data.login,
+                followers: userData.data.followers,
+                company: userData.data.company,
+                url: userData.data.html_url,
+                avatar: userData.data.avatar_url,
+                quantityRepos: Number(userData.data.public_repos)
+            });
+
         })();
 
-    },[setQuantityRepos, setRepositories, setUserName, setBio, setLogin, setFollowers, setCompany, setUrl, setAvatar]);
+    },[setRepositories]);
 
     useEffect(() => {
         if (search !== '') {
@@ -64,24 +69,9 @@ export function RepositorySearchContextProvider({ children }: RepositorySearchCo
             value={{
                 search,
                 setSearch,
-                quantityRepos,
-                setQuantityRepos,
                 repositories: filteredRepositories,
                 setRepositories,
-                userName,
-                setUserName,
-                bio,
-                setBio,
-                login,
-                setLogin,
-                followers,
-                setFollowers,
-                company,
-                setCompany,
-                url,
-                setUrl,
-                avatar,
-                setAvatar
+                userInfo
             }}
         >
             {children}
