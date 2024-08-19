@@ -9,32 +9,32 @@ import link from '../../../assets/icons/arrow-up-right-from-square-solid.svg';
 import { RepositorySearchContext } from "../../../context/RepositorySearchContext";
 
 export function CardProfile() {
-    const {userName, bio, login, followers, company, url, avatar} = useContext(RepositorySearchContext);
+    const {userInfo} = useContext(RepositorySearchContext);
 
     return (
         <ProfileContainer>
-            <ProfilePhoto src={avatar} />
+            <ProfilePhoto src={userInfo.avatar} />
 
             <ProfileBio>
-                <h2>{userName}</h2>
-                <span>{bio}</span>
+                <h2>{userInfo.name}</h2>
+                <span>{userInfo.bio}</span>
                 <ProfileInfo>
                     <div>
-                        <a href={url} target="_blank" title="Acessar GITHUB">
+                        <a href={userInfo.url} target="_blank" title="Acessar GITHUB">
                             <img src={gitimg} alt="" />
-                            {login}
+                            {userInfo.login}
                             <img src={link} alt="" />
                         </a>
                     </div>
 
                     <div>
                         <img src={building} alt="" />
-                        {company}
+                        {userInfo.company}
                     </div>
 
                     <div>
                         <img src={group} alt="" />
-                        {followers} seguidores
+                        {userInfo.followers} seguidores
                     </div>
                 </ProfileInfo>
             </ProfileBio>
